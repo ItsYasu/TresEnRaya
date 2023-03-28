@@ -77,50 +77,43 @@ public class LogicaJuego {
      * @return
      */
     public int comprobarJuego(int matriz[][]) {
-    /* se tendrá que comprobar que las posiciones correspondientes tengan el 
-       mismo valor; es decir se tiene que ir comparando las casillas entre sí; 
-       de forma horizontal, vertical y diagonal, obligatoriamente.  . 
-       Se evalúa utilizar las estructuras correctas, para reducir el número de 
-       iteraciones. Todo de forma organizada y optimizada recordemos 
-       que estamos en un módulo del tercer semestre del ciclo.  Pero, 
-       por si acaso posible pseudocódigo:   
-        Comprobar si existe tres en raya:
-            Comprobar horizontal			
-            si no, Comprobar vertical        
-            si no, Comprobar en diagonal
-        Si no hay tres en raya:
-    */
         // Inserta código aquí...
-        int N = matriz.length;
 
-        // Comprobación horitzontal. Comprueba si hay tres elementos iguales en una fila
-        for (int i = 0; i < N; i++) { //este bucle solo reitera sobre las filas (se ignoran columnas vacias)
-            if (matriz[i][0] != 0 && matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2]) {
-                return 1; //el valor 0 (matriz[i][0] != 0) se considera nulo. Es decir que no haya nada en la casilla
-            }
+        // Comprobar si existe tres en raya
+        // Comprobar si en la horizontal hay 3 en raya
+        if (matriz[0][0] == matriz[0][1] && matriz[0][1] == matriz[0][2]) {
+            return 1; // Hay 3 en raya
         }
-
-        // Comprobación vertical. Comprueba si hay tres elementos iguales en una columna
-        for (int j = 0; j < N; j++) { //este bucle solo reitera sobre las columnas (se ignoran columnas vacias)
-            if (matriz[0][j] != 0 && matriz[0][j] == matriz[1][j] && matriz[1][j] == matriz[2][j]) {
-                return 1;
-            }
+        if (matriz[1][0] == matriz[1][1] && matriz[1][1] == matriz[1][2]) {
+            return 1; // Hay 3 en raya
         }
-
-        // Comprobación diagonal de izq. a der. (se ignoran casillas vacias)
-        if (matriz[0][0] != 0 && matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2]) {
+        if (matriz[2][0] == matriz[2][1] && matriz[2][1] == matriz[2][2]) {
             return 1;
         }
 
-        // Comprobación diagonal de der. a izq. (se ignoran casillas vacias)
-        if (matriz[0][2] != 0 && matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0]) {
+        //Comprobar si en la vertical hay 3 en raya
+        if (matriz[0][0] == matriz[1][0] && matriz[1][0] == matriz[2][0]) {
+            return 1;
+
+        }
+        if (matriz[0][1] == matriz[1][1] && matriz[1][1] == matriz[2][1]) {
+            return 1;
+        }
+        if (matriz[0][2] == matriz[1][2] && matriz[1][2] == matriz[2][2]) {
             return 1;
         }
 
-        // Si no hay tres en raya, devolver 0
+        //Comprobar si en la diagonal hay tres en raya
+        if (matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2]) {
+            return 1;
+        }
+        if (matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0]) {
+            return 1;
+        }
+
+        // Si no hay tres en raya
         return 0;
     }
-
 
     /**
      * En caso de Ganador, mostrará la ventana, dentro del tablero; con el
